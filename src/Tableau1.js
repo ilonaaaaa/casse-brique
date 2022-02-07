@@ -22,7 +22,6 @@ class Tableau1 extends Phaser.Scene{
         //---------------------------------------------
 
         this.balle = this.physics.add.sprite(this.largeur/2, this.hauteur/2, 'cercle')
-
         this.balle.setDisplaySize(20, 20)
         this.balle.body.setBounce(1,1);
         this.balle.body.setAllowGravity(false)
@@ -45,9 +44,11 @@ class Tableau1 extends Phaser.Scene{
         this.droite.body.setAllowGravity(false)
         this.droite.setImmovable(true);
 
+
         this.brique = this.physics.add.sprite(600, 300, 'carre').setOrigin(0, 0)
         this.brique.setDisplaySize(60, 30)
         this.brique.setImmovable(true);
+
 
         this.player = this.physics.add.sprite(300, 700, 'carre').setOrigin(0, 0)
         this.player.setDisplaySize(200,20)
@@ -94,10 +95,10 @@ class Tableau1 extends Phaser.Scene{
 
     rebond(player) {
 
-        this.rando = this.balle.y - player.y
+        this.rando = this.balle.x - this.player.x
         this.coeff = this.rando / 100
         this.coeff = this.coeff * 10 - 5
-        this.balle.setVelocityY(this.balle.body.velocity.y + this.coeff * 50)
+        this.balle.setVelocityX(this.balle.body.velocity.x + this.coeff * 50)
         console.log(this.balle.x, this.balle.y)
     }
 
@@ -112,6 +113,7 @@ class Tableau1 extends Phaser.Scene{
         this.balle.setVelocityX(0)
 
         this.player.y=780
+        this.player.x=300
     }
 
     /**
@@ -127,30 +129,30 @@ class Tableau1 extends Phaser.Scene{
 
     update(){
         if(this.balle.y > this.hauteur){
-            this.balle.setY(760)
+            this.balleAucentre()
         }
 
-        this.player.y += this.playerSpeed
+        this.player.x += this.playerSpeed
     }
 
     initKeyboard(){
         let me = this
         this.input.keyboard.on('keydown', function (kevent) {
             switch (kevent.keyCode) {
-                case Phaser.Input.Keyboard.KeyCodes.right:
-                    me.playerSpeed = -10
+                case Phaser.Input.Keyboard.KeyCodes.RIGHT:
+                    me.playerSpeed = 7
                     break;
-                case Phaser.Input.Keyboard.KeyCodes.left:
-                    me.playerSpeed = 10
+                case Phaser.Input.Keyboard.KeyCodes.LEFT:
+                    me.playerSpeed = -7
                     break;
             }
         });
         this.input.keyboard.on('keyup', function (kevent) {
             switch (kevent.keyCode) {
-                case Phaser.Input.Keyboard.KeyCodes.right:
+                case Phaser.Input.Keyboard.KeyCodes.RIGHT:
                     me.playerSpeed = 0
                     break;
-                case Phaser.Input.Keyboard.KeyCodes.left:
+                case Phaser.Input.Keyboard.KeyCodes.LEFT:
                     me.playerSpeed = 0
                     break;
             }
