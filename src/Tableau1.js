@@ -44,11 +44,31 @@ class Tableau1 extends Phaser.Scene{
         this.droite.body.setAllowGravity(false)
         this.droite.setImmovable(true);
 
-
-        this.brique = this.physics.add.sprite(600, 300, 'carre').setOrigin(0, 0)
-        this.brique.setDisplaySize(60, 30)
-        this.brique.setImmovable(true);
-
+        for(let i=0;i<9;i++){
+            this.brique = this.physics.add.sprite(i*61, 200, "carre").setDisplaySize(60,30).setOrigin(-2,2)
+            this.physics.add.collider(this.balle, this.brique)
+            this.brique.setImmovable(true);
+        }
+        for(let i=0;i<9;i++){
+            this.brique = this.physics.add.sprite(i*61, 231, "carre").setDisplaySize(60,30).setOrigin(-2,2)
+            this.physics.add.collider(this.balle, this.brique)
+            this.brique.setImmovable(true);
+        }
+        for(let i=0;i<9;i++){
+            this.brique = this.physics.add.sprite(i*61, 262, "carre").setDisplaySize(60,30).setOrigin(-2,2)
+            this.physics.add.collider(this.balle, this.brique)
+            this.brique.setImmovable(true);
+        }
+        for(let i=0;i<9;i++){
+            this.brique = this.physics.add.sprite(i*61, 293, "carre").setDisplaySize(60,30).setOrigin(-2,2)
+            this.physics.add.collider(this.balle, this.brique)
+            this.brique.setImmovable(true);
+        }
+        for(let i=0;i<9;i++){
+            this.brique = this.physics.add.sprite(i*61, 324, "carre").setDisplaySize(60,30).setOrigin(-2,2)
+            this.physics.add.collider(this.balle, this.brique)
+            this.brique.setImmovable(true);
+        }
 
         this.player = this.physics.add.sprite(300, 700, 'carre').setOrigin(0, 0)
         this.player.setDisplaySize(200,20)
@@ -64,12 +84,13 @@ class Tableau1 extends Phaser.Scene{
         this.physics.add.collider(this.balle, this.gauche)
         this.physics.add.collider(this.balle, this.droite)
         this.physics.add.collider(this.balle, this.haut)
-        this.physics.add.collider(this.balle, this.brique)
+
 
         this.balle.setMaxVelocity(this.maxspeed,this.maxspeed)
 
         this.physics.add.collider(this.gauche, this.player)
         this.physics.add.collider(this.droite, this.player)
+        this.physics.add.collider(this.haut, this.player)
 
 
         this.playerSpeed = 0
@@ -93,7 +114,7 @@ class Tableau1 extends Phaser.Scene{
 
     }
 
-    rebond(player) {
+    rebond() {
 
         this.rando = this.balle.x - this.player.x
         this.coeff = this.rando / 100

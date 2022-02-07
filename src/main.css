@@ -32,18 +32,18 @@ canvas{
     outline: 1px solid #333;
 }
 
-/*#scores{
-    color: #27722d;
+#scores{
+    color: #ffffff;
     font-size : 5vw;
     display: flex;
     justify-content: center;
     position: absolute;
-    top: 700px;
+    top: 100px;
     width: 95.5%;
 }
 
 .score{
-    color: #27722d
+    color: #ffffff
 }
 .name{
     font-size: 2vw;
@@ -52,4 +52,3 @@ canvas{
 #scores >* {
     margin: 1vw;
 }
-*/
