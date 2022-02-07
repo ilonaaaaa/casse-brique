@@ -13,10 +13,10 @@ class Tableau1 extends Phaser.Scene{
         this.hauteur = 800
         this.largeur = 800
         this.speedX = 0
-        while(this.speedX===0){
-            this.speedX = 500*Phaser.Math.Between(-1,1)
+        while(this.speedY===0){
+            this.speedY = 500*Phaser.Math.Between(-1,1)
         }
-        this.speedY = Phaser.Math.Between(-500, 500)
+        this.speedX = Phaser.Math.Between(-500, 500)
         this.maxspeed = 500
 
         //---------------------------------------------
@@ -93,26 +93,29 @@ class Tableau1 extends Phaser.Scene{
         this.physics.add.collider(this.haut, this.player)
 
 
+
         this.playerSpeed = 0
 
 
         /*if(this.balle<0)
         {
-            this.scoreplayer2 +=1;
-            this.textplayer1.setText('Player 1 = ' + this.scoreplayer1);
-
-        }
-
-        this.joueurGauche = new Joueur('Froppy','joueurGauche')
-        this.joueurDroite = new Joueur('Crappy','joueurDroite')
-        window.toto=this.joueurGauche;
-        console.log(this.joueurGauche)*/
+            this.textplayer.setText('Score = ' + this.scoreplayer);
+        }*/
 
 
         this.balleAucentre();
         this.initKeyboard()
 
     }
+
+    /*bord() {
+        if(this.player.x>=780) {
+            this.player.x = 780
+        }
+        if(this.player.x<=20) {
+            this.player.x = 20
+        }
+    }*/
 
     rebond() {
 
@@ -138,7 +141,6 @@ class Tableau1 extends Phaser.Scene{
     }
 
     /**
-     *
      * @param {Joueur} joueur
      */
     win(joueur){
