@@ -32,8 +32,8 @@ class Tableau1 extends Phaser.Scene{
         this.haut.setDisplaySize(this.largeur, 20)
         this.haut.body.setAllowGravity(false)
         this.haut.setImmovable(true);
-        //this.haut.flipY=true;
-        //this.haut.flipX=true;
+        this.haut.flipY=true;
+        this.haut.flipX=true;
 
         this.gauche = this.physics.add.sprite(0, 0, 'carre').setOrigin(0, 0)
         this.gauche.setDisplaySize(20 ,this.hauteur)
@@ -45,10 +45,14 @@ class Tableau1 extends Phaser.Scene{
         this.droite.body.setAllowGravity(false)
         this.droite.setImmovable(true);
 
+        this.brique = this.physics.add.sprite(600, 300, 'carre').setOrigin(0, 0)
+        this.brique.setDisplaySize(60, 30)
+        this.brique.setImmovable(true);
 
-        this.player = this.physics.add.sprite(305, 0, 'carre').setOrigin(0, 0)
+        this.player = this.physics.add.sprite(300, 700, 'carre').setOrigin(0, 0)
         this.player.setDisplaySize(200,20)
-        this.player.setImmovable(true)
+        this.player.body.setAllowGravity(false)
+        this.player.setImmovable(true);
 
         let me = this;
         this.physics.add.collider(this.player, this.balle,function(){
@@ -59,12 +63,13 @@ class Tableau1 extends Phaser.Scene{
         this.physics.add.collider(this.balle, this.gauche)
         this.physics.add.collider(this.balle, this.droite)
         this.physics.add.collider(this.balle, this.haut)
+        this.physics.add.collider(this.balle, this.brique)
 
         this.balle.setMaxVelocity(this.maxspeed,this.maxspeed)
 
-        this.physics.add.collider(this.haut, this.player)
         this.physics.add.collider(this.gauche, this.player)
         this.physics.add.collider(this.droite, this.player)
+
 
         this.playerSpeed = 0
 
@@ -106,7 +111,7 @@ class Tableau1 extends Phaser.Scene{
         this.balle.setVelocityY(Math.random()>0.5?-300:300)
         this.balle.setVelocityX(0)
 
-        this.player.y=this.hauteur/2-50
+        this.player.y=780
     }
 
     /**
@@ -132,20 +137,20 @@ class Tableau1 extends Phaser.Scene{
         let me = this
         this.input.keyboard.on('keydown', function (kevent) {
             switch (kevent.keyCode) {
-                case Phaser.Input.Keyboard.KeyCodes.left:
-                    me.playerSpeed = -5
-                    break;
                 case Phaser.Input.Keyboard.KeyCodes.right:
-                    me.playerSpeed = 5
+                    me.playerSpeed = -10
+                    break;
+                case Phaser.Input.Keyboard.KeyCodes.left:
+                    me.playerSpeed = 10
                     break;
             }
         });
         this.input.keyboard.on('keyup', function (kevent) {
             switch (kevent.keyCode) {
-                case Phaser.Input.Keyboard.KeyCodes.left:
+                case Phaser.Input.Keyboard.KeyCodes.right:
                     me.playerSpeed = 0
                     break;
-                case Phaser.Input.Keyboard.KeyCodes.right:
+                case Phaser.Input.Keyboard.KeyCodes.left:
                     me.playerSpeed = 0
                     break;
             }
